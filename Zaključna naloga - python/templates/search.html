@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iskanje igrišč</title>
+</head>
+<body>
+    <h2>Dobrodošli, {{ session['user'] }}</h2>
+    <a href="{{ url_for('logout') }}">Odjava</a>
+
+    <h2>Iskanje košarskarskih igrišč</h2>
+    <form method="post">
+        <input type="text" name="place_name" placeholder="Vnesite kraj" required>
+        <button type="submit">Išči</button>
+    </form>
+
+    {% if courts %}
+        <h2>Rezultati iskanja:</h2>
+        <ul>
+            {% for court in courts %}
+                <li>
+                    <strong>{{ court.name }}</strong>
+                    Lokacija: {{ court.vicinity }} <br>
+                    {% if court.photo_url %}
+                        <img src="{{ court.photo_url }}" alt="Slika igrišča" style="width: 300px; height: auto">
+                    {% else %}
+                        <p>Ni razpoložljive slike.</p>
+                    {% endif %}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ni rezultatov. Poskusite z drugo lokacijo.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('logout') }}">Odjava</a>
+</body>
+</html>
