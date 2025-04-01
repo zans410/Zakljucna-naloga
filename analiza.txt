@@ -1,0 +1,15 @@
+Program:
+	osnova :  Iskanje igrišč v podani okolici in iskanje ljudi za igranje 
+¸		-za začetek le košarka
+	
+	
+	uporabniki: Ljubitelji sportnih aktivnosti 
+
+
+	zaslužek:
+		- Preko eventov, ki jih bova organizirala na aplikaciji (igranje tekmovanj (5x5), (3x3), tekmovanje v metu trojk))  - poberva majhen delež nagrade
+		- Preko reklam
+		
+		
+
+	cilj: Spodbujanje sportne aktivnosti na slovneskih igriščih. Ustvariti comunity sportnikov in jim omogočati lažjo povezavo med njimi
