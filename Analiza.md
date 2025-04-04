@@ -35,16 +35,16 @@ Grožnje
 
  
 Viri prihodkov:
-•Osnovna aplikacija je brezplačna
-•Premium članstvo (2€/mesec): Omogočala bo posebne funkcije, ki jih bova dodala kasneje
-•Provizija od organiziranih turnirjev in eventov(10% prijavnin)
-•Reklame v aplikaciji
-•Reklame na eventih in turnirjih
+• Osnovna aplikacija je brezplačna
+• Premium članstvo (2€/mesec): Omogočala bo posebne funkcije, ki jih bova dodala kasneje
+• Provizija od organiziranih turnirjev in eventov(10% prijavnin)
+• Reklame v aplikaciji
+• Reklame na eventih in turnirjih
 
 Struktura stroškov:
-•Marketing: 300€ mesečno (predvsem spletno oglaševanje in promocijski dogodki)
-•Tehnična podpora 200€ mesečno
-•Približno 150€ na mesec za hosting (cena je lahko višja)
+• Marketing: 300€ mesečno (predvsem spletno oglaševanje in promocijski dogodki)
+• Tehnična podpora 200€ mesečno
+• Približno 150€ na mesec za hosting (cena je lahko višja)
 
 Strategija pridobivanja uporabnikov:
 -	Organizacija turnirjev na 5 najbolj obiskanih igrišč v Sloveniji
