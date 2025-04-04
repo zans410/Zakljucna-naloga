@@ -1,7 +1,9 @@
-Problem: 
+Problem:  
+
 V Sloveniji v preteklih letih vpada število ljudi, ki hodijo na igrišča, razlog je, da nimajo prijateljev ali pa soigralcev, ki bi skupaj igrali z njimi šport. Dan danes se na javnih igriščih v Sloveniji tudi redko zgodi kakšen event ali turnir. Velik problem je tudi, da je velik procent ljudi v Sloveniji fizično neaktivnih(med 50 in 60% odraslih), kar želiva spremeniti.
 
-Rešitev: 
+Rešitev:  
+
 Aplikacija »GEOPickUp« bo poiskala igrišča na željeni lokaciji in pokazala če je kakšen uporabnik na njem. Aplikacija bo podala tudi možnost turnirjev ter eventov, ki jih lahko organizirajo uporabniki ali pa midva. To bo spodbudilo uporabnike, da grejo na igrišče in dvignilo nivo uličnega športa v Sloveniji. Zdi se nama, da je aplikacija pomembna za povezovanje športnikov in, da jim omogoča lažjo komunikacijo med sabo.
 Ciljna skupina: Vse starostne skupine, ljubitelji športa, ljudi, ki bi radi tekmovali. Konec koncev tudi za ljudi, ki bi radi gledali tekmovanja in se udeležili eventov.
 Zakaj je drugačna: Za razliko od drugih aplikacij omogoča možnost turnirjev ter eventov, ki pred tem v Sloveniji sploh ni obstajala. Povezovala bo tudi ljudi različnih starosti, z istimi interesi.
