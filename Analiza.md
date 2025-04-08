@@ -7,7 +7,7 @@ Ciljna skupina: Vse starostne skupine, ljubitelji športa, ljudi, ki bi radi tek
 Zakaj je drugačna: Za razliko od drugih aplikacij omogoča možnost turnirjev ter eventov, ki pred tem v Sloveniji sploh ni obstajala. Povezovala bo tudi ljudi različnih starosti, z istimi interesi.
 
 Velikost trga:  
-• V Sloveniji je približno 30-40% mladoletnikov in odraslih redno aktivnih.
+• V Sloveniji je približno 30-40% mladoletnikov in odraslih redno aktivnih.  
 • Sklepava, da približno 20% teh ljudi obiskuje igrišča.
 
 Konkurenčna analiza:  
