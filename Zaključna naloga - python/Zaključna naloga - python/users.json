@@ -1,0 +1,1 @@
+{"users": {"1": {"username": "oskar", "password": "1234"}, "2": {"username": "milko", "password": "1234"}}, "court_activity": {"1": {"court_name": "Igri\u0161\u010de za ko\u0161arko Zeleni gaj", "user": "oskar", "status": "active"}, "2": {"court_name": "Goran Dragic basketball court", "user": "milko", "status": "active"}}}
