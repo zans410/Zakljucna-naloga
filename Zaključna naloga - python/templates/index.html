@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domača stran</title>
+    <style>
+    /* General reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fc;
+        color: #333;
+        line-height: 1.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    /* Container for the content */
+    .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* Title styles */
+    h1 {
+        font-size: 2.5rem;  /* Larger font size */
+        color: #2c3e50;  /* Default text color */
+        margin-bottom: 20px;
+    }
+
+    /* Style for the word GeoPickUp */
+    .highlight {
+        font-size: 2.8rem;  /* Slightly larger font size for emphasis */
+        font-weight: bold;
+        color: #3498db;  /* Blue color */
+        text-transform: uppercase;  /* Uppercase letters */
+        letter-spacing: 2px;  /* Spacing between letters */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
+    }
+
+    /* Paragraph styles */
+    p {
+        font-size: 1.1rem;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+    }
+
+    /* Link styles */
+    a {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    a:hover {
+        color: #1d8eb8;
+    }
+
+    /* Additional spacing and responsive adjustments */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Doborodošli v <span class="highlight">GeoPickUp</span> iskalniku igrišč 🏀</h1>
+        <p>Pred uporabo aplikacije se prosim prijavite <a href="{{ url_for('login_user') }}">Login</a>
+            ali pa registrirajte če še nimate profila <a href="{{ url_for('register_user') }}">Register</a>.</p>
+    </div>
+</body>
+</html>
