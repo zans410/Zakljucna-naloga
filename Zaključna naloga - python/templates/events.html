@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    <h2>Seznam dogodkov</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event['event_name'] }}</strong><br>
+                Datum: {{ event['event_date'] }}<br>
+                Igrišče: {{ event['court_name'] }}<br>
+                <form action="{{ url_for('join_event', event_name=event['event_name']) }}" method="post">
+                    <button type="submit">Prijavi se na dogodek</button>
+                </form>
+            </li>
+        {% endfor %}
+</body>
+</html>

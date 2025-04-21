@@ -158,5 +158,31 @@ def leave_court(court_name):
     flash(f"{user} je zapustil igrišče {court_name}.")
     return redirect(url_for('search_courts') + f"?place_name={place_name}")
 
+@app.route('/create_event', methods=['GET, POST'])
+def create_event():
+    if request.method == 'POST':
+        event_name = request.form['event_name']
+        event_date = request.form['event_date']
+        court_name = request.form['court_name']
+
+        event_table = db.table('events')
+        event_table.insert({
+            'event_name': event_name,
+            'event_date': event_date,
+            'court_name': court_name
+        })
+
+        flash(f"Dogodek '{event_name}' je bil uspešno ustvarjen!")
+        return redirect(url_for('view_events'))
+
+    return render_template('create_event.html')
+
+@app.route('/events')
+def view_events():
+    event_table = db.table('events')
+    events = event_table.all()
+    return render_template('events.html', events=events)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
