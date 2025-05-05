@@ -6,7 +6,12 @@
     <title>Events</title>
 </head>
 <body>
-    <h2>Seznam dogodkov</h2>
+    <h2>Seznam dogodkov</h2> 
+    
+    <form action="{{ url_for('search_courts', place_name=place_name) }}" method="get" style="margin-bottom: 20px;">
+        <button type="submit">Nazaj na iskanje igrišč</button>
+    </form>
+
     <ul>
         {% for event in events %}
             <li>
@@ -18,5 +23,6 @@
                 </form>
             </li>
         {% endfor %}
+    </ul>
 </body>
 </html>
