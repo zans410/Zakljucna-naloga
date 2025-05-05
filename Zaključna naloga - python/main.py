@@ -183,6 +183,31 @@ def view_events():
     events = event_table.all()
     return render_template('events.html', events=events)
 
+@app.route('/join_event/<event_name>', methods=['POST'])
+def join_event(event_name):
+    user = session.get('user')
+
+    event_table = db.table('events')
+    user_event_table = db.table('user_events')
+
+    event = event_table.search(Query().event_name == event_name)
+    if event:
+        user_event_table.insert({
+            'user' : user,
+            'event_name': event_name
+        })
+        flash(f"Uspešno ste se prijavili na dogodek '{event_name}'.")
+    else:
+        flash(f"Dogodek '{event_name}' ni na voljo.")
+
+    return redirect(url_for('view_events'))
+
+@app.route('/event_participants/<event_name>')
+def event_participation(event_name):
+    user_event_table = db.table('user_events')
+    participants = user_event_table.search(Query().event_name == event_name)
+    return render_template('event_participants.html', event_name=event_name, participants=participants)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
