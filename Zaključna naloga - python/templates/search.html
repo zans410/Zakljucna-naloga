@@ -190,6 +190,18 @@
         font-weight: bold;
         padding-left: 5px;
     }
+    .map-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    .map-button:hover {
+        background-color: #0056b3;
+    }
     </style>
 </head>
 <body>
@@ -197,10 +209,20 @@
     <a href="{{ url_for('logout') }}">Odjava</a>
 
     <h2>Iskanje košarskarskih igrišč</h2>
+    
     <form method="post">
         <input type="text" name="place_name" placeholder="Vnesite kraj" required>
         <button type="submit">Išči</button>
     </form>
+
+    <div style="margin-top: 15px;">
+        <a href="{{ url_for('create_event') }}">
+            <button class="map-button" type="button">Ustvari dogodek</button>
+        </a>
+        <a href="{{ url_for('view_events') }}">
+            <button class="map-button" type="button">Prikaži dogodek</button>
+        </a>
+    </div>
 
     {% if courts %}
         <h2>Rezultati iskanja:</h2>
@@ -242,6 +264,7 @@
                             <button type="submit">Zapusti igrišče</button>
                         </form>
                     {% endif %}>
+
                 </li>
                 <hr>
             {% endfor %}
