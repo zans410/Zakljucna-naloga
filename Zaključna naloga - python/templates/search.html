@@ -5,202 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iskanje igrišč</title>
     <style>
-    :root {
-    --primary: #f56b00;             /* oranžna kot košarkarska žoga */
-    --secondary: #1f1f1f;           /* temna podlaga */
-    --background: #121212;          /* glavno ozadje */
-    --white: #ffffff;
-    --gray: #bbb;
-    --light-gray: #444;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --radius: 12px;
-    --active-player: #00ff00;       /* svetlo zelena za aktivne igralce */
-    --inactive-player: #ff0000;     /* rdeča za neaktivne igralce */
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
+    /* Osnovne nastavitve */
     body {
-        background-color: var(--background);
-        color: var(--gray);
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
+        font-family: 'Helvetica Neue', sans-serif;
+        background-color: #fafafa;
+        color: #222;
+        margin: 0;
+        padding: 30px;
+        line-height: 1.6;
     }
 
     h2 {
-        color: var(--white);
-        margin-bottom: 1rem;
-        font-size: 2rem;
-        text-align: center;
-        text-shadow: 0 0 8px rgba(245, 107, 0, 0.2);
+        color: #333;
+        margin-top: 0;
     }
 
-    a {
-        color: var(--primary);
-        font-weight: bold;
-        text-decoration: none;
-        margin: 1rem 0;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: #ff944d;
-    }
-
+    /* Obrazec */
     form {
-        background-color: var(--secondary);
-        padding: 2rem;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        max-width: 500px;
-        width: 100%;
-        margin-bottom: 2rem;
-        border: 1px solid #2a2a2a;
+        margin: 20px 0;
     }
 
     input[type="text"] {
-        width: 100%;
-        padding: 1rem;
-        border: 1px solid var(--light-gray);
-        border-radius: var(--radius);
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        background-color: #1a1a1a;
-        color: var(--white);
-    }
-
-    input::placeholder {
-        color: #888;
+        padding: 12px 15px;
+        width: 280px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1em;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     }
 
     button {
-        width: 100%;
-        padding: 0.9rem;
-        background-color: var(--primary);
-        color: white;
+        padding: 12px 18px;
+        background-color: #005bbb;
+        color: #fff;
         border: none;
-        border-radius: var(--radius);
-        font-size: 1rem;
+        border-radius: 6px;
+        font-size: 1em;
         cursor: pointer;
-        transition: background 0.3s ease;
-        font-weight: bold;
+        transition: background-color 0.3s ease;
     }
 
     button:hover {
-        background-color: #d45900;
+        background-color: #004799;
     }
 
+    .map-button {
+        margin: 5px 5px 5px 0;
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+    .map-button:hover {
+        background-color: #ccc;
+    }
+
+    a {
+        text-decoration: none;
+        color: #005bbb;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Rezultati */
     ul {
-        list-style-type: none;
+        list-style: none;
         padding: 0;
-        max-width: 800px;
-        width: 100%;
     }
 
     li {
-        background-color: var(--secondary);
-        padding: 1.5rem;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        margin-bottom: 1.5rem;
-        transition: transform 0.2s ease;
-        border-left: 4px solid var(--primary);
-    }
-
-    li:hover {
-        transform: translateY(-3px);
-    }
-
-    strong {
-        color: var(--white);
-        font-size: 1.2rem;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     img {
         max-width: 100%;
-        border-radius: var(--radius);
-        margin-top: 1rem;
-        box-shadow: 0 0 10px rgba(255, 100, 0, 0.1);
+        height: auto;
+        border-radius: 6px;
+        margin-top: 10px;
     }
 
-    p {
-        margin-top: 1rem;
-        font-style: italic;
-        color: #999;
+    .active-player {
+        display: inline-block;
+        background-color: #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        margin: 4px 4px 0 0;
+        font-size: 0.9em;
     }
 
     hr {
         border: none;
-        height: 1px;
-        background: #2e2e2e;
-        margin: 1rem 0;
+        border-top: 1px solid #eee;
+        margin: 20px 0;
     }
 
-    @media (max-width: 600px) {
-        body {
-            padding: 1rem;
-        }
-
-        form {
-            padding: 1.5rem;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-        }
+    /* Gumbi zgoraj */
+    .top-buttons {
+        margin-top: 15px;
     }
 
-    button.map-button {
-        padding: 0.5rem 1rem; /* Zmanjšan padding, a še vedno dovolj velik za klik */
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        border-radius: var(--radius);
-        font-size: 0.9rem; /* Manjša pisava */
-        cursor: pointer;
-        transition: background 0.3s ease;
+    .logout-link {
+        float: right;
+        color: #c0392b;
         font-weight: bold;
-        width: auto; /* Samo širina po vsebini gumba */
-        margin-top: 1rem; /* Razmik pod sliko */
-        display: inline-block; /* Omogoča, da gumb ni čez celotno širino */
-        text-align: center; /* Poravnava besedila v gumbu */
     }
 
-    button.map-button:hover {
-        background-color: #d45900;
-    }
-
-    /* Stil za aktivne in neaktivne igralce */
-    .active-player {
-        color: var(--active-player);
-        font-weight: bold;
-        padding-left: 5px;
-    }
-
-    .inactive-player {
-        color: var(--inactive-player);
-        font-weight: bold;
-        padding-left: 5px;
-    }
-    .map-button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-    .map-button:hover {
-        background-color: #0056b3;
+    .logout-link:hover {
+        color: #a93226;
     }
     </style>
 </head>
