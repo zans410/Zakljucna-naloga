@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prijava na dogodek</title>
+    <style>
+    body > h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    form input[type="text"],
+    form input[type="number"] {
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1em;
+        width: 100%;
+    }
+
+    form input[type="submit"] {
+        margin-top: 10px;
+        padding: 12px 16px;
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #005fa3;
+    }
+    </style>
 </head>
 <body>
     <h2>Prijava na dogodek: {{ event_name }}</h2>
