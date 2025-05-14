@@ -4,8 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event participants</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        max-width: 600px;
+        width: 100%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.05em;
+    }
+
+    /* Seznam udeležencev */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    li {
+        background-color: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+    }
+
+    /* Gumb za nazaj */
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+
+    button {
+        padding: 10px 16px;
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #005fa3;
+    }   
+    </style>
 </head>
 <body>
+    <div class="container">
     <h2>Udeleženci dogodka: {{ event_name }}</h2>
 
     {% if fee %}
@@ -30,5 +100,6 @@
     <a href="{{ url_for('view_events') }}">
         <button>Nazaj na dogodke</button>
     </a>
+    </div>
 </body>
 </html>
