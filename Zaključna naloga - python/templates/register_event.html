@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava na dogodek</title>
+</head>
+<body>
+    <h2>Prijava na dogodek: {{ event_name }}</h2>
+
+    <form action="{{ url_for('submit_event_registration', event_name=event_name) }}" method="post">
+        <label for="full_name">Polno ime:</label><br>
+        <input type="text" name="full_name" required><br>
+
+        <label for="age">Starost:</label><br>
+        <input type="number" name="age" required><br>
+
+        <label for="phone">Telefonska številka:</label><br>
+        <input type="text" name="phone" requried><br>
+
+        <label for="fee">Prijavnina (€):</label><br>
+        <input type="number" name="fee" step="0.01" required><br><br>
+
+        <input type="submit" value="Prijavi se">
+    </form>
+</body>
+</html>
