@@ -4,43 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #2c3e50;
+    }
+
+    /* Gumb za nazaj */
+    form[action*="search_courts"] {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 10px 16px;
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #005fa3;
+    }
+
+    /* Seznam dogodkov */
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        background-color: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    li strong {
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    li p {
+        margin-top: 5px;
+        color: #555;
+    }
+
+    /* Obrazci znotraj dogodkov */
+    li form {
+        margin-top: 10px;
+    }
+
+    hr {
+        margin-top: 20px;
+        border: none;
+        border-top: 1px solid #ddd;
+    }
+    </style>
 </head>
 <body>
-    <h2>Seznam dogodkov</h2> 
-    
-    <form action="{{ url_for('search_courts', place_name=place_name) }}" method="get" style="margin-bottom: 20px;">
-        <button type="submit">Nazaj na iskanje igrišč</button>
-    </form>
+    <div class="container">
+        <h2>Seznam dogodkov</h2> 
+        
+        <form action="{{ url_for('search_courts', place_name=place_name) }}" method="get" style="margin-bottom: 20px;">
+            <button type="submit">Nazaj na iskanje igrišč</button>
+        </form>
 
-    <ul>
-        {% for event in events %}
-            <li>
-                <strong>{{ event['event_name'] }}</strong><br>
-                Datum: {{ event['event_date'] }}<br>
-                Igrišče: {{ event['court_name'] }}<br>
-                {% if event['fee'] %}
-                    <p>Prijavnina: {{ event['fee'] }} €</p>
-                {% else %}
-                    <p>Prijavnina ni določena.</p>
-                {% endif %}
+        <ul>
+            {% for event in events %}
+                <li>
+                    <strong>{{ event['event_name'] }}</strong><br>
+                    Datum: {{ event['event_date'] }}<br>
+                    Igrišče: {{ event['court_name'] }}<br>
+                    {% if event['fee'] %}
+                        <p>Prijavnina: {{ event['fee'] }} €</p>
+                    {% else %}
+                        <p>Prijavnina ni določena.</p>
+                    {% endif %}
 
-                <form action="{{ url_for('event_registration', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
-                    <button type="submit">Prijavi se na dogodek</button>
-                </form>
+                    <form action="{{ url_for('event_registration', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
+                        <button type="submit">Prijavi se na dogodek</button>
+                    </form>
 
-                <form action="{{ url_for('event_participation', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
-                    <button type="submit">Prikaži udelženci</button>
-                </form>
+                    <form action="{{ url_for('event_participation', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
+                        <button type="submit">Prikaži udelženci</button>
+                    </form>
 
-                <form action="{{ url_for('delete_event', event_name=event['event_name']) }}" method="post">
-                    <button type="submit" onClick="return confirm('Ali ste prepričani, da želite izbrisati ta dogodek?');">
-                        Izbriši dogodek
-                    </button>
-                </form>
+                    <form action="{{ url_for('delete_event', event_name=event['event_name']) }}" method="post">
+                        <button type="submit" onClick="return confirm('Ali ste prepričani, da želite izbrisati ta dogodek?');">
+                            Izbriši dogodek
+                        </button>
+                    </form>
 
-                <hr>
-            </li>
-        {% endfor %}
-    </ul>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
