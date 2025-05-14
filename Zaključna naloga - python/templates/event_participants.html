@@ -7,10 +7,28 @@
 </head>
 <body>
     <h2>Udeleženci dogodka: {{ event_name }}</h2>
+
+    {% if fee %}
+        <p><strong>Prijavnina:</strong> {{ fee }} €</p>
+    {% else %}
+        <p>Prijavnina ni določena za ta dogodek.</p>
+    {% endif %}
+
     <ul>
         {% for participant in participants %}
-            <li>{{ participant['user'] }}</li>
+            <li>{{ participant.full_name }}
+                (Starost : {{ participant.age }},
+                Tel: {{ participant.phone }},
+                Prijavnina: {{ participant.fee }} €)
+            </li>
+        {% else %}
+            <li>Ni prijavljenih udeležencev.</li>
         {% endfor %}
     </ul>
+
+    <br>
+    <a href="{{ url_for('view_events') }}">
+        <button>Nazaj na dogodke</button>
+    </a>
 </body>
 </html>
