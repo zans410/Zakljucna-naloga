@@ -18,9 +18,27 @@
                 <strong>{{ event['event_name'] }}</strong><br>
                 Datum: {{ event['event_date'] }}<br>
                 Igrišče: {{ event['court_name'] }}<br>
-                <form action="{{ url_for('join_event', event_name=event['event_name']) }}" method="post">
+                {% if event['fee'] %}
+                    <p>Prijavnina: {{ event['fee'] }} €</p>
+                {% else %}
+                    <p>Prijavnina ni določena.</p>
+                {% endif %}
+
+                <form action="{{ url_for('event_registration', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
                     <button type="submit">Prijavi se na dogodek</button>
                 </form>
+
+                <form action="{{ url_for('event_participation', event_name=event['event_name']) }}" method="get" style="margin-bottom: 5px;">
+                    <button type="submit">Prikaži udelženci</button>
+                </form>
+
+                <form action="{{ url_for('delete_event', event_name=event['event_name']) }}" method="post">
+                    <button type="submit" onClick="return confirm('Ali ste prepričani, da želite izbrisati ta dogodek?');">
+                        Izbriši dogodek
+                    </button>
+                </form>
+
+                <hr>
             </li>
         {% endfor %}
     </ul>
