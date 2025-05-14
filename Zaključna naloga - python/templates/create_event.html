@@ -10,11 +10,17 @@
     <form action="{{ url_for('create_event') }}" method="post">
         <label for="event_name">Ime dogodka:</label>
         <input type="text" name="event_name" required><br>
+
         <label for="event_date">Datum dogodka:</label>
         <input type="date" name="event_date" required><br>
+
         <label for="court_name">Ime igrišča:</label>
         <input type="text" name="court_name" required><br>
-        <button type="submit">Ustvari dogodek</button>
+
+        <lable for="fee">Prijavnina (€):<label><br>
+        <input type="number" name="fee" step="0.01" required><br><br>
+
+        <input type="submit" value="Ustvari dogodek">
     </form>
 </body>
 </html>
