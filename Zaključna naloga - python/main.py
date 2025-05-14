@@ -158,18 +158,20 @@ def leave_court(court_name):
     flash(f"{user} je zapustil igrišče {court_name}.")
     return redirect(url_for('search_courts') + f"?place_name={place_name}")
 
-@app.route('/create_event', methods=['GET, POST'])
+@app.route('/create_event', methods=['GET', 'POST'])
 def create_event():
     if request.method == 'POST':
         event_name = request.form['event_name']
         event_date = request.form['event_date']
         court_name = request.form['court_name']
+        fee = request.form['fee']
 
         event_table = db.table('events')
         event_table.insert({
             'event_name': event_name,
             'event_date': event_date,
-            'court_name': court_name
+            'court_name': court_name,
+            'fee': fee
         })
 
         flash(f"Dogodek '{event_name}' je bil uspešno ustvarjen!")
@@ -181,6 +183,7 @@ def create_event():
 def view_events():
     event_table = db.table('events')
     events = event_table.all()
+
     return render_template('events.html', events=events)
 
 @app.route('/join_event/<event_name>', methods=['POST'])
@@ -204,10 +207,52 @@ def join_event(event_name):
 
 @app.route('/event_participants/<event_name>')
 def event_participation(event_name):
-    user_event_table = db.table('user_events')
-    participants = user_event_table.search(Query().event_name == event_name)
-    return render_template('event_participants.html', event_name=event_name, participants=participants)
+    event_table = db.table('events')
+    event = event_table.get(Query().event_name == event_name)
+    
+    if event:
+        fee = event.get('fee')
+    else:
+        fee = None
 
+    event_reg_table = db.table('event_registrations')
+    participants = event_reg_table.search(Query().event_name == event_name)
+
+    return render_template('event_participants.html', event_name=event_name, participants=participants, fee=fee)
+
+@app.route('/register/event<event_name>', methods=['GET'])
+def event_registration(event_name):
+    return render_template('register_event.html', event_name=event_name)
+
+@app.route('/register_event/<event_name>', methods=['POST'])
+def submit_event_registration(event_name):
+    full_name = request.form['full_name']
+    age = request.form['age']
+    phone = request.form['phone']
+    fee = request.form['fee']
+
+    event_reg_table = db.table('event_registrations')
+    event_reg_table.insert({
+        'event_name': event_name,
+        'full_name': full_name,
+        'age': age,
+        'phone': phone,
+        'fee': fee
+    })
+
+    flash(f"{full_name} uspešno registriran na dogodek '{event_name}' s prijavnino {fee}.")
+    return redirect(url_for('view_events'))
+    
+@app.route('/delete_event/<event_name>', methods=['POST'])
+def delete_event(event_name):
+    event_table = db.table('events')
+    user_event_table = db.table('user_events')
+
+    event_table.remove(Query().event_name == event_name)
+    user_event_table.remove(Query().event_name == event_name)
+
+    flash(f"Dogodek '{event_name}' je bil izbrisan.")
+    return redirect(url_for('view_events'))
 
 if __name__ == "__main__":
     app.run(debug=True)
