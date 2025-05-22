@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from tinydb import TinyDB, Query
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'kljuc123'
@@ -25,12 +26,15 @@ def register_user():
         User = Query() 
         if users_table.contains(User.username == username): #preverja ce so uporabniki ze v bazi
             flash("Uporabniško ime je že v bazi. Poiskusite z drugim.")
-        #dodajanje uporabnika v bazo ce se ne obstaja
         else: 
-            users_table.insert({'username': username, 'password': password})
-            flash(f"Uporabnik '{username}' uspešno registrtitan!")
+            hashed_password = generate_password_hash(password)
+            users_table.insert({
+                'username': username,
+                'password': hashed_password
+            })
+            flash(f"Uporabnik '{username}' je bil uspešno registriran!")
             return redirect(url_for('login_user'))
-
+        
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST']) #stran za prijavo uporabnika
@@ -41,7 +45,7 @@ def login_user():
 
         User = Query()
         user = users_table.search(User.username == username) #preveri ce je uporabnik v bazi
-        if user and user[0]['password'] == password:
+        if user and check_password_hash(user[0]['password'], password):
             session['user'] = username #shranjen uporabnik v sejo
             flash(f"Pozdravljeni nazaj, {username}!")
             return redirect(url_for('search_courts'))
@@ -254,5 +258,15 @@ def delete_event(event_name):
     flash(f"Dogodek '{event_name}' je bil izbrisan.")
     return redirect(url_for('view_events'))
 
+    #stran ne obstaja
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
+
+    #notranja napaka strežnika
+    @app.errorhandler(500)
+    def internal_error(e):
+        return render_template('500.html'), 500
+    
 if __name__ == "__main__":
     app.run(debug=True)
